@@ -49,3 +49,7 @@ Templates directory includes all the html templates used. At the very beginning,
 App.py contains all of the python code, along with configuration part, imports, and all routes.
 
 Library.sql has four tables: books, members, transactions and staff. Database is populated with 20 actual books and their details together with 20 random names and details of members. There has been a great deal of change over time. I have implemented a soft delete technique for all deletions in the application that tags removed entries as deleted and then I filtered those out from relevant templates.
+
+- *** Link to Render.com ***
+  https://sunrise-learning-center-library.onrender.com
+  
