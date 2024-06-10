@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block search %}
+
+{% endblock %}
+
+{% block main %}
+
+<div class="container-ch">
+
+    <input class="search-member-ch me-2" id="searchMember" type="search" name="queryMember" autocomplete="off" placeholder="Member ID" aria-label="Search" autofocus>
+    <button id="memberSearch" class="btn btn-book-ch" onclick="checkoutMemberSearch()">Find</button>
+    
+    <div class="wrapper">
+        <table id="member" class="table">
+            <thead class="sticky-top table-top">
+                <tr>
+                    <th scope="col" style="border-radius: 0.7rem 0 0 0;">ID</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">EMAIL</th>
+                    <th scope="col">ADDRESS</th>
+                    <th scope="col">PHONE</th>
+                    <th scope="col">CHECKED OUT</th>
+                    <th scope="col" style="border-radius: 0 0.7rem 0 0;"></th>
+                </tr>
+            </thead>
+            <tbody>                
+                  
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<!--Collapse https://getbootstrap.com/docs/5.3/components/collapse/-->
+<div class="collapse collapseCh" id="collapseExample">
+    <div class="card card-body">
+        <div>
+            <input id="searchBook" name="queryBook" class="search-book-ch me-2" type="search" autocomplete="off" placeholder="Book ID" aria-label="Search">
+            <button id="bookSearch" class="btn btn-book-ch" onclick="checkoutBookSearch()">Find</button>
+        </div>
+        <div class="wrapper table-book-ch">
+            <table id='book' class="table">
+                <thead class="sticky-top table-top">
+                    <tr>
+                        <th scope="col" style="border-radius: 0.7rem 0 0 0;">ID</th>            
+                        <th scope="col">TITLE</th>
+                        <th scope="col">AUTHOR</th>
+                        <th scope="col">GENRE</th>          
+                        <th scope="col">PUBLISHED</th>                        
+                        <th scope="col">AVAILABLE</th>
+                        <th scope="col"></th>
+                        <th scope="col" style="border-radius: 0 0.7rem 0 0;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <br>
+        
+        <div class="wrapper table-book-ch">
+            <table id="addedBooks" class="table table-added-books">
+                <thead>
+                    <h5>Added Books:</h5>
+                    <hr>                
+                </thead>
+                <tbody>
+      
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <form id="checkout" method="post" action="/checkout">
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,425 @@
+/* Layout % general style */
+body {
+    background-image: url("../images/book.jpeg");
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-position: center center; 
+    background-size: cover;
+}
+
+nav {
+    background-image: linear-gradient(180deg, rgba(0,0,0,1) 62%, rgba(121,121,121,1) 100%);
+    border-bottom: solid black 0.1rem;
+}
+
+.navbar {
+    font-size: large;
+    z-index: 2;
+}
+
+.nav-item {
+    padding: 0.5rem 1rem;
+}
+
+@media only screen and (max-width: 1185px) {
+    .nav-item {
+      padding: 0;
+      max-width: fit-content;
+    }
+  }
+
+.navbar-brand {
+    margin-right: 3rem;
+    border-radius: 10%;
+    padding: 0 0.3rem;
+    font-size: 2rem;
+    background-color: rgb(33, 195, 240);
+}
+
+.dropdown-item:hover {
+    background-color: rgb(33, 240, 226);
+}
+
+.drop-shadow {
+    box-shadow: 0.1rem 0.2rem 1rem rgb(33, 240, 240);
+}
+
+.drobdown-menu {
+    z-index: 2;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: rgb(33, 240, 240);
+}
+
+.navbar-toggler {
+    background-color:rgb(33, 237, 240);
+    font-size: 1rem;
+}
+
+.logout {
+    background-color: transparent;
+    border-style: none;
+    padding-left: 0;
+}
+
+.select {
+    color: rgb(33, 240, 230);
+    border: 0.1rem solid rgb(33, 237, 240);
+    background-color: transparent;
+    border-radius: 0.5rem;
+}
+
+.select option {
+    background-color: black;
+}
+
+.by {
+    color: rgb(33, 223, 240);
+    padding: 0 0.5rem 0 0.2rem;
+}
+
+
+/* Footer */
+
+footer {
+    background-image: linear-gradient(0deg, rgba(0,0,0,1) 62%, rgba(121,121,121,1) 100%);
+    margin-top: auto;
+    padding: 1.5rem;
+    color: rgb(33, 240, 240);
+    font-size: smaller;
+    text-align: center;
+    border-top: solid black 0.1rem;
+    z-index: 2;
+}
+
+.footer-item {
+    float: left;
+    margin: auto;
+    font-size: 1rem;
+    position: absolute;
+    text-align: left;
+}
+
+.footer-item div {
+    padding: 0.1rem;
+    margin-left: 2rem;
+}
+
+@media only screen and (max-width: 1185px) {
+    .footer-item {
+      text-align: unset;
+      float: none;
+      margin: auto;
+      position: relative;
+    }
+  }
+
+
+/* Flash messages */
+
+.error {
+    margin: auto;
+    font-family: "Bookman Old Style", Verdana;
+    font-size: large;
+    font-style: italic;
+    text-align: center;
+    color: black;
+}
+
+.alert {
+    margin: 0 auto 2rem auto;
+    width: fit-content;
+    background-color: rgb(33, 140, 240);
+    box-shadow: 0.7rem 0.7rem;
+}
+
+/* Forms */
+
+.forms {
+    margin: auto;
+    padding-bottom: 2rem;
+    width: fit-content;
+    min-width: 15rem;
+    border-radius: 0.6rem;
+    border: black solid;
+    box-shadow: 0.7rem 0.7rem;
+}
+
+.form_name {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    background-image: linear-gradient(180deg, rgba(0,0,0,1) 62%, rgba(121,121,121,1) 100%);
+    color: white;
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+    border-bottom: 0.1rem solid rgb(33, 223, 240);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.input-group {
+    padding: 1rem;
+}
+
+.input-group-text {
+    background-image: linear-gradient(180deg, rgba(0,0,0,1) 62%, rgba(121,121,121,1) 100%);
+    color:white;
+    font-size: 1.2rem;
+    padding: 0 2rem 0 2rem;
+    width: 12rem;
+    justify-content: center;
+}
+
+.form-control {
+    background: none;
+    border: 0.05rem solid black;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0.3rem rgb(33, 233, 240);
+    border: 0.01rem black;
+    z-index: 0!important;
+}
+
+.input-button {
+    color: white;
+    background-image: linear-gradient(180deg, rgba(0,0,0,1) 62%, rgba(121,121,121,1) 100%);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    padding: 0.2rem 5rem 0.2rem 5rem;
+    border-radius: 0.5rem;
+}
+
+.input-button:hover {
+    box-shadow: 0 0 5px rgb(33, 240, 226);
+    color: rgb(33, 240, 212);
+}
+
+/* Logged in librarian name */
+.user {
+    color: rgb(33, 240, 240);    
+    float: right;
+    margin-left: 2rem;    
+}
+
+.user span {
+    font-style: italic; 
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 991px){
+    .user {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Books & members templates */
+
+.search {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+}
+
+.sort {
+    margin-bottom: 2rem;
+}
+
+.sort-by {
+    font-size: 1.1rem;
+    padding-right: .2rem;
+}
+
+.wrapper {
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 56vh;
+    box-shadow: 1rem 1rem 1rem;
+    font-weight: bold;
+}
+
+.table-top {
+    background-image: linear-gradient(180deg, rgba(0,0,0,1) 62%, rgba(121,121,121,1) 100%);
+    color: white;
+    z-index: 1;
+}
+
+th {
+    font: caption;
+}
+
+.button {
+    color: white;
+    background-image: linear-gradient(180deg, rgba(0,0,0,1) 62%, rgba(121,121,121,1) 100%);
+    border-radius: 0.5rem;
+}
+
+.btn-members {
+    padding: 0.5rem;
+}
+
+.btn-books {
+    margin-bottom: 3rem;
+    padding: 0.5rem;
+}
+
+.btn-edit {
+    padding: 0 0.8rem; 
+}
+
+.button:hover {
+    border-color: rgb(33, 240, 226);
+    color: rgb(33, 230, 240);
+}
+
+.note {
+    text-align: left;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    background-color: rgba(33, 240, 216, 0.8);
+    padding: 0.9rem 2rem 0.05rem 2rem;
+    border-radius: 0.4rem;
+}
+
+.row-data:hover  {
+    background-color: rgba(33, 240, 226, 0.3);
+}
+
+option {
+    background-color: rgba(33, 240, 230, 0.3);
+}
+
+/* Checkout */
+.container-ch {
+    background-color: black;
+    min-height: fit-content;
+    width: 100%;
+    border: 0.1rem solid rgb(33, 226, 240);
+    box-shadow: 0.2rem 0.2rem 0 0;
+    padding-top: 2rem;
+}
+
+.search-member-ch {    
+    vertical-align: middle;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    outline: 0.1rem solid rgb(33, 240, 212);
+}
+
+.row-member-ch {
+    color: white;
+}
+
+.card {
+    background-color:rgba(0, 0, 0, 0.215);
+}
+
+.search-book-ch {    
+    vertical-align: middle;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    outline: 0.1rem solid black;
+}
+
+.search-book-ch:focus {
+    box-shadow: 0rem 0rem 1rem rgb(33, 237, 240);
+}
+
+.btn-book-ch {
+    color: white;
+    background-color: black;
+}
+
+.btn-book-ch:hover {
+    outline: 0.2rem solid rgb(0, 0, 0);
+    background-color: transparent;
+    color: black;
+}
+
+.table-book-ch {
+    margin-top: 1rem;
+}
+
+.btn-cancel-member{
+    border-radius: 0.5rem 0.5rem;
+}
+
+.btn-cancel-member:hover { 
+   background-color: rgb(33, 167, 240);
+}
+
+.btn-remove-book {
+    color: white;
+    background-color: black;
+    border-radius: 0.5rem 0.5rem;
+}
+
+.btn-remove-book:hover {
+    background-color: rgb(33, 181, 240);
+    color: black;
+}
+
+.btn-book {
+    color: white;
+    background-color: black;
+    border-radius: 0.5rem 0.5rem;
+}
+
+.btn-book:hover {
+    background-color: rgb(33, 167, 240);
+    color: black;
+}
+
+.table-added-books {
+    background-color: rgba(33, 240, 219, 0.164);
+}
+
+.btn-checkout {
+    margin-top: 0.8rem;
+    font-size: 1.3rem;
+    color: white;
+    background-color: black;
+    border-radius: 0.5rem 0.5rem;
+}
+
+.btn-checkout:hover {
+    outline: 0.2rem solid rgb(33, 185, 240);
+    
+}
+
+/* Index page */
+
+.row-data-index:hover {
+    background-color: rgba(33, 240, 219, 0.3);
+    cursor: pointer;
+}
+
+.index-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-family:'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;    
+    text-shadow: 0.1rem 0.1rem black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(33, 199, 240);
+}
+
+/* FAQ page */
+
+.faq {
+    width: 70%;
+    margin: auto;
+}
+
+.faq p {
+    font-size: 1.2rem;
+}

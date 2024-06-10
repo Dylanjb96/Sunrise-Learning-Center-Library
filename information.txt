@@ -1,0 +1,3 @@
+postgresql://library_pcou_user:iceO5VPJeaWZvrgGojbHQtvoR9x5ZySL@dpg-cpavtvv79t8c73b62bh0-a.frankfurt-postgres.render.com/library_pcou  //externals/postgres
+postgresql://library_pcou_user:iceO5VPJeaWZvrgGojbHQtvoR9x5ZySL@dpg-cpavtvv79t8c73b62bh0-a/library_pcou  //internals/postgres
+iceO5VPJeaWZvrgGojbHQtvoR9x5ZySL //passwords

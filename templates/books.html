@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block title %}Books Management{% endblock %}
+
+{% block search %}
+<input id="search" class="search me-2" onkeyup="searchBook()" name="query" autocomplete="off" placeholder="Serach" aria-label="Search" autofocus>
+<span class="by">by</span>
+<select name="field" id="field" class="select">
+    <option value="title">Title</option>
+    <option value="author">Author</option>
+    <option value="id">ID</option>
+</select>
+{% endblock %}
+
+{% block main %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-dismissible fade show" role="alert">
+    <span class="error">{{ message }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<p>
+    <button class="button btn-members" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Instructions
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="note">
+        <ul>
+            <li>In order to edit book details, select the 'Edit' button at the far right of the book's row.
+                A form will open where you can make desired changes. To save those changes please select the 'Update' button.</li>
+            <li>To delete a book select corresponding 'Remove' button. You will be prompted to confirm your choice. This completely removes all book's stock and details from the system.
+                Make sure that all copies of the book have been returned before proceeding. Please note that this is a PERMANENT ACTION and CANNOT BE UNDONE!</li>
+        </ul>
+    </div>
+</div>
+<div class="wrapper" id="blur">
+    <table id='books' class="table table-striped">
+        <thead class="sticky-top table-top">
+            <tr>
+                <th scope="col" style="border-radius: 0.7rem 0 0 0;">ID</th>            
+                <th scope="col">TITLE</th>
+                <th scope="col">AUTHOR</th>
+                <th scope="col">GENRE</th>          
+                <th scope="col">PUBLISHED</th>
+                <th scope="col">STOCK</th>
+                <th scope="col"></th>
+                <th scope="col" style="border-radius: 0 0.7rem 0 0;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}            
+                <tr class="row-data">                            
+                    <td id="id">{{ book.id }}</td>
+                    <td id="title">{{ book.title }}</td>
+                    <td id="author">{{ book.author }}</td> 
+                    <td id="genre">{{ book.genre }}</td>           
+                    <td id="year">{{ book.year }}</td>
+                    <td id="stock">{{ book.stock }}</td>
+                    <td>
+                        <form action="/books" method="POST" onsubmit='return confirm("Completely remove \"{{ book.title }}\" by {{ book.author }} (book ID: {{ book.id }}) and all of its stock from library database?")'>
+                            <input name="id" value="{{ book.id }}" hidden>
+                            <button name="button" value="remove" class="button">Remove</button>
+                        </form>
+                    </td>
+                    <td><button class="button btn-edit" onclick='toggle(); editBook("{{ book.id }}", "{{ book.title }}", "{{ book.author }}", "{{ book.genre }}", "{{ book.year }}", "{{ book.stock }}")'>Edit</button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!--Popup hidden until Edit selected -->
+<div id="popup">
+    <form class="forms" action="/books" method="post" onsubmit="return confirm('Please confirm that all details are correct.')">
+        <h4 class="form_name">EDIT BOOK<span class="close" onclick="toggle()"><sup>X</sup></span></h4>
+        <input hidden name="form_id" id="form_id">
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+            <input class="form-control" name="title" id="form_title" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Author</span>
+            <input class="form-control" name="author" id="form_author" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Genre</span>
+            <select class="form-control" name="genre" id="form_genre">
+                {% for genre in genres %}
+                <option>{{ genre }}</option>
+                {% endfor %}
+            </select>     
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Published</span>
+            <input class="form-control" name="year" id="form_year" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Current Stock is&nbsp;'<span id="show_stock"></span>'</span>
+            <input type="number" class="form-control" name="stock" id="form_stock" autocomplete="off" placeholder="Add/Remove stock">
+        </div>
+        <button class="input-button" type="submit" name="button" value="update">Update</button>        
+    </form>    
+</div>
+{% endblock %}

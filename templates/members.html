@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %}Members Management{% endblock %}
+
+{% block search %}
+<input id="search" class="search me-2" onkeyup="searchMember()" name="query" autocomplete="off" placeholder="Serach" aria-label="Search" autofocus>
+<span class="by">by</span>
+<select name="field" id="field" class="select">
+    <option value="name">Name</option>
+    <option value="member_id">ID</option>
+</select>
+{% endblock %}
+
+{% block main %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-dismissible fade show" role="alert">
+    <span class="error">{{ message }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<p>
+    <button class="button btn-members" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Instructions
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="note">
+        <ul>
+            <li>In order to edit member details, select the 'Edit' button at the far right of the member's row.
+                A form will open where you can make desired changes. To save those changes please select the 'Update' button.</li>
+            <li>To delete a member select corresponding 'Remove' button. You will be prompted to confirm your choice. Make sure that 
+                all books from selected member have been returned to library before proceeding. Please note that this is a PERMANENT
+                ACTION and CANNOT BE UNDONE!</li>
+        </ul>
+    </div>
+</div>
+<div class="wrapper" id="blur">
+    <table id="members" class="table table-striped">
+        <thead class="sticky-top table-top">
+            <tr>
+                <th scope="col" style="border-radius: 0.7rem 0 0 0;">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">ADDRESS</th>
+                <th scope="col">PHONE</th>
+                <th scope="col"></th>
+                <th scope="col" style="border-radius: 0 0.7rem 0 0;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}            
+                <tr class="row-data">            
+                    <td id="id">{{ member.member_id }}</td>
+                    <td id="name">{{ member.name }}</td>
+                    <td id="email">{{ member.email }}</td> 
+                    <td id="address">{{ member.address }}</td>
+                    <td id="phone">{{ member.phone }}</td>
+                    <td>
+                        <form action="/members" method="POST" onsubmit='return confirm("Completely remove member {{ member.name }} (member ID: {{ member.member_id }}) and all their details from library database?")'>
+                            <input type="text" name="id" value="{{ member.member_id }}" hidden>
+                            <button name="button" value="remove" class="button">Remove</button>
+                        </form>  
+                    </td>                              
+                    <td><button class="button btn-edit" onclick='toggle(); editMember("{{ member.member_id }}", "{{ member.name }}", "{{ member.email }}", "{{ member.address }}", "{{ member.phone }}")'>Edit</button></td>                              
+                </tr>        
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!--Popup hidden until Edit selected-->
+<div id="popup">
+    <form class="forms" action="/members" method="post" onsubmit="return confirm('Please confirm that all details are correct.')">
+        <h4 class="form_name">EDIT MEMBER<span class="close" onclick="toggle()"><sup>X</sup></span></h4>
+        <input hidden name="form_id" id="form_id">
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Full Name</span>
+            <input class="form-control" name="name" id="form_name" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">E-mail</span>
+            <input class="form-control" name="email" id="form_email" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
+            <input class="form-control" name="address" id="form_address" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Phone Number</span>
+            <input class="form-control" name="phone" id="form_phone" autocomplete="off">
+        </div>
+        <button class="input-button" type="submit" name="button" value="update">Update</button>        
+    </form>
+</div>
+{% endblock %}

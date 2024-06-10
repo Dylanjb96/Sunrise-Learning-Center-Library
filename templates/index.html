@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block search %}
+
+<input class="search-index me-2" id="searchReturns" autocomplete="off" placeholder="Member ID" aria-label="Search" autofocus>
+
+{% endblock %}
+
+{% block main %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-dismissible fade show" role="alert">
+    <span class="error">{{ message }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<h4 class="index-title">BOOK RETURNS</h4>
+
+<div class="wrapper">
+    <table id="returns" class="table table-striped">
+        <thead class="sticky-top table-top">
+            <tr>
+                <th scope="col" style="border-radius: 0.7rem 0 0 0;">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">ADDRESS</th>
+                <th scope="col">PHONE</th>
+                <th scope="col" style="border-radius: 0 0.7rem 0 0;">BOOKS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %} 
+                <tr class="row-data-index" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"> 
+                    <td class="memId">{{ member.member_id }}</td>
+                    <td class="memName">{{ member.name }}</td>
+                    <td>{{ member.email }}</td> 
+                    <td>{{ member.address }}</td>
+                    <td>{{ member.phone }}</td>
+                    <td>{{ member.borrowed }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!--https://getbootstrap.com/docs/5.3/components/offcanvas/-->
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasBottomLabel"></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>    
+    <table id="borrowed" class="table">
+        <thead class="sticky-top table-top">
+            <tr>
+                <th scope="col" style="border-radius: 0.7rem 0 0 0;">ID</th>            
+                <th scope="col">TITLE</th>
+                <th scope="col">AUTHOR</th>
+                <th scope="col">GENRE</th>          
+                <th scope="col">PUBLISHED</th>
+                <th scope="col">DUE DATE</th>  
+                <th scope="col" style="border-radius: 0 0.7rem 0 0;"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <form action="/" method="post" id="returnAll" onsubmit='return confirm("Return all books?")'>
+        <button class="btn-return-all">Return All</button>
+    </form>
+</div>
+
+{% endblock %}

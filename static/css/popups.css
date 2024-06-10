@@ -1,0 +1,36 @@
+.wrapper#blur.active {
+    filter:blur(0.1rem);
+    pointer-events: none;
+    user-select: none;
+}
+
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+#popup .forms {
+    background-image: url("../images/book.jpeg");
+}
+
+#popup.active {
+    display: block;
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 90vh;
+    z-index: 3;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    padding-right: 0.2rem;
+}
+
+.close:hover {
+    color: rgb(33, 230, 240);
+}

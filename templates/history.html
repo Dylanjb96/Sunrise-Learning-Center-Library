@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}System Management{% endblock %}
+
+{% block main %}
+{% if session["user_id"] == 1 %}
+
+    <ul class="nav">
+        <li class="nav-item-manage">
+            <a href="/history" class="btn btn-manage link-manage-active">
+                Transactions History
+            </a>
+        </li>
+        <li class="nav-item-manage">
+            <a href="/register" class="btn btn-manage">
+                Register New Librarian
+            </a>
+        </li>
+        <li class="nav-item-manage">
+            <a href="/remove" class="btn btn-manage">
+                Remove Librarian
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="filters">
+
+        <div class="transaction-filter">
+            <input type="radio" id="borrowed" name="transaction">
+            <label class="borrowed-filter" for="borrowed">Borrowed</label><br>
+            <input type="radio" id="returned" name="transaction">
+            <label class="returned-filter" for="returned">Returned</label><br>
+        </div>
+
+        <div class="book-member-group">
+            <div class="book-filter">
+                <input class="book-search" id="queryBookId" placeholder="Book ID">
+            </div>
+        
+            <div class="member-filter">
+                <input class="member-search" id="queryMemberId" placeholder="Member ID">
+            </div>
+        </div>
+
+        <div class="librarian-clear-group">
+            <select class="librarian-filter">
+                <option id="disabled" disabled></option>
+            </select>
+
+            <button class="clear-filters">Clear Filters</button>
+        </div> 
+    </div>
+
+    <div class="wrapper">
+        <table id="historyTable" class="table table-striped">
+            <thead class="sticky-top table-top">
+                <tr>
+                    <th scope="col" style="border-radius: 0.7rem 0 0 0;">BOOK (ID)</th>
+                    <th scope="col">MEMBER (ID)</th>
+                    <th scope="col">LIBRARIAN</th>
+                    <th scope="col" style="border-radius: 0 0.7rem 0 0;"><span id="sortDate">Sort by TIME <span id="arrowUp">&#x21d1;</span><span id="arrowDown">&#x21d3;</span></span></th>
+                </tr>
+            </thead>
+            <tbody id="historyTbody">
+                {% for t in transactions %}
+                {% if t.type == 'borrowed' or t.type == 'borrow' %}
+                    <tr class="borrowed"> 
+                        <td>{{ t.title }} (<span class="bookId">{{ t.book_id }}</span>)</td>
+                        <td>{{ t.name }} (<span class="memberId">{{ t.borrower_id }}</span>)</td>
+                        <td class="staff-name">{{ t.staff_name }}</td> 
+                        <td>{{ t.time }}</td>
+                    </tr>
+                {% else %}
+                    <tr class="returned"> 
+                        <td>{{ t.title }} (<span class="bookId">{{ t.book_id }}</span>)</td>
+                        <td>{{ t.name }} (<span class="memberId">{{ t.borrower_id }}</span>)</td>
+                        <td class="staff-name">{{ t.staff_name }}</td> 
+                        <td>{{ t.time }}</td>
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% else %}
+
+    <h3>Admin only section</h3>
+
+{% endif %}
+{% endblock %}
