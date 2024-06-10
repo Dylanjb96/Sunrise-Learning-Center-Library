@@ -11,7 +11,7 @@ This web application allows its users (librarians) to manage library functions s
 - Ajax 
 - Python (Flask)  
 - Jinja
-- SQL
+- PostgreSQL
 
 <br>
 
