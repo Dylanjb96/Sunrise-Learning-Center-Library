@@ -24,6 +24,9 @@ and then run a command
 ```bash
 flask run
 ```
+```bash
+gunicorn app:app
+```
 Once started, please use username: **admin** and password: **00000** to log in as an administrator and gain access to all available features of an LMS. Regular users (librarians) would have limited access to some options.
 
 Wherever in the app, you can access any of the following sections: manage members, add a member, edit members' details (Although, I could not solve the problem to show changes) catalogue of books, manage books, add a new book, checkout, book returns, Library Management (or account if logged in as librarian), FAQ and logout. with '/account' it will redirect you to change and set new password to current account. 
@@ -52,4 +55,7 @@ Library.sql has four tables: books, members, transactions and staff. Database is
 
 - *** Link to Render.com ***
   https://sunrise-learning-center-library.onrender.com
+- *** Link to GitHub Repo ***
+  https://github.com/Dylanjb96/Sunrise-Learning-Center-Library
+  
   
